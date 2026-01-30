@@ -1,4 +1,4 @@
-/* Christmas effects: snowfall (canvas) + twinkling stars overlay
+/* Tết effects: falling lì xì (canvas) + twinkling stars overlay
    - Sử dụng requestAnimationFrame
    - Tắt nếu URL có ?xmas=0 hoặc localStorage.xmasEffects === "off"
    - Tôn trọng prefers-reduced-motion
@@ -45,6 +45,18 @@
   // Canvas context
   const ctx = canvas.getContext('2d');
 
+  // Preload lì xì image
+  const lixiImage = new Image();
+  let lixiLoaded = false;
+  lixiImage.onload = function() {
+    lixiLoaded = true;
+  };
+  lixiImage.onerror = function() {
+    lixiLoaded = false;
+    console.log('Lì xì image failed to load, using fallback');
+  };
+  lixiImage.src = '/assets/lixi.png';
+
   // Kích thước và scale
   let W = 0, H = 0, DPR = Math.max(1, window.devicePixelRatio || 1);
 
@@ -60,7 +72,7 @@
   resize();
   window.addEventListener('resize', resize, { passive: true });
 
-  // Snowflake constructor
+  // Lì xì (red envelope) constructor
   function Flake(x, y, r, speed, wind, opacity) {
     this.x = x;
     this.y = y;
@@ -68,24 +80,41 @@
     this.speed = speed;
     this.wind = wind;
     this.opacity = opacity;
+    this.rotation = Math.random() * Math.PI * 2; // Random initial rotation
+    this.rotationSpeed = (Math.random() - 0.5) * 0.05; // Slow rotation for natural motion
     this.update = function () {
       this.x += this.wind;
       this.y += this.speed;
+      this.rotation += this.rotationSpeed; // Update rotation
       // wrap-around
-      if (this.y > H + this.r) {
-        this.y = -this.r;
+      if (this.y > H + this.r * 2) {
+        this.y = -this.r * 2;
         this.x = Math.random() * W;
       }
-      if (this.x > W + this.r) this.x = -this.r;
-      if (this.x < -this.r) this.x = W + this.r;
+      if (this.x > W + this.r * 2) this.x = -this.r * 2;
+      if (this.x < -this.r * 2) this.x = W + this.r * 2;
     };
     this.draw = function (ctx) {
-      ctx.beginPath();
-      // simple circle (white)
-      ctx.fillStyle = 'rgba(255,255,255,' + this.opacity + ')';
-      ctx.moveTo(this.x + this.r, this.y);
-      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-      ctx.fill();
+      ctx.save();
+      ctx.globalAlpha = this.opacity;
+      ctx.translate(this.x, this.y);
+      ctx.rotate(this.rotation);
+      
+      if (lixiLoaded) {
+        // Draw lì xì image
+        const w = this.r * 2;
+        const h = this.r * 2.8; // Lì xì are taller than wide (envelope shape)
+        ctx.drawImage(lixiImage, -w / 2, -h / 2, w, h);
+      } else {
+        // Fallback: red/yellow block (globalAlpha already set)
+        ctx.fillStyle = 'rgb(220, 20, 60)'; // Red
+        ctx.fillRect(-this.r, -this.r * 1.4, this.r * 2, this.r * 2.8);
+        // Yellow/gold accent
+        ctx.fillStyle = 'rgb(255, 215, 0)';
+        ctx.fillRect(-this.r * 0.8, -this.r * 1.2, this.r * 1.6, this.r * 0.4);
+      }
+      
+      ctx.restore();
     };
   }
 
@@ -94,16 +123,16 @@
   function initFlakes() {
     flakes = [];
     const area = W * H;
-    // density: flakes per 10000 px^2 (adjust: ~0.8)
-    const density = 0.8;
+    // density: flakes per 10000 px^2 (adjusted to ~0.6 for lì xì)
+    const density = 0.6;
     const count = Math.min(200, Math.round((area / 10000) * density));
     for (let i = 0; i < count; i++) {
-      const r = 0.8 + Math.random() * 3.5; // size
+      const r = 0.8 + Math.random() * 3.5; // size (base size for lì xì)
       const x = Math.random() * W;
       const y = Math.random() * H;
-      const speed = 0.3 + Math.random() * 1.2;
-      const wind = (Math.random() - 0.5) * 0.6;
-      const opacity = 0.2 + Math.random() * 0.9;
+      const speed = 0.6 + Math.random() * 1.8; // speed ~0.6–2.4
+      const wind = (Math.random() - 0.5) * 2.0; // wind ~±1.0
+      const opacity = 0.5 + Math.random() * 0.5; // opacity 0.5–1.0
       flakes.push(new Flake(x, y, r, speed, wind, opacity));
     }
   }
