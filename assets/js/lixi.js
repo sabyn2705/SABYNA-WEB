@@ -5,7 +5,7 @@
     el.className = 'lixi-bao';
     const img = document.createElement('img');
     // path relative to repo root - adjust if your site serves from a subpath
-    img.src = (options && options.src) ? options.src : './assets/svg/bao.svg';
+    img.src = (options && options.src) ? options.src : '/assets/svg/bao.svg';
     img.alt = '';
     el.appendChild(img);
 
@@ -18,10 +18,6 @@
     const delay = Math.random() * 4; // 0s - 4s
     el.style.animation = `lixi-fall ${duration}s linear ${delay}s forwards`;
 
-    // small random horizontal sway via CSS variable + transform tweak
-    const sway = (Math.random() * 30) - 15; // -15 to 15 deg
-    el.style.setProperty('--lixi-sway', sway + 'deg');
-
     // Remove after animation ends (duration + delay + small buffer)
     const ttl = (duration + delay + 0.5) * 1000;
     setTimeout(()=> el.remove(), ttl);
@@ -30,7 +26,7 @@
   }
 
   function startLixi(opts){
-    const cfg = Object.assign({ count: 18, interval: 350, src: './assets/svg/bao.svg' }, opts || {});
+    const cfg = Object.assign({ count: 18, interval: 350, src: '/assets/svg/bao.svg' }, opts || {});
     // respect reduced motion
     const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if(prefersReduced) return { stop: ()=>{} };
@@ -47,7 +43,6 @@
     let intervalId = setInterval(()=>{
       if(spawned >= cfg.count){ clearInterval(intervalId); return; }
       const b = createBao({ src: cfg.src });
-      // slight random horizontal offset adjustment after append to allow vw calculations
       container.appendChild(b);
       spawned++;
     }, cfg.interval);
