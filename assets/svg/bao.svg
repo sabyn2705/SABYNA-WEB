@@ -1,0 +1,12 @@
+<!-- assets/svg/bao.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="100" viewBox="0 0 120 100" aria-hidden="true">
+  <defs>
+    <linearGradient id="g" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ff5252"/>
+      <stop offset="100%" stop-color="#d50000"/>
+    </linearGradient>
+  </defs>
+  <rect x="6" y="10" width="108" height="80" rx="8" fill="url(#g)" stroke="#a30000" stroke-width="2"/>
+  <path d="M12 20 Q60 60 108 20" fill="#ffcc00" opacity="0.9"/>
+  <text x="60" y="62" font-size="28" text-anchor="middle" fill="#a30000" font-family="sans-serif">福</text>
+</svg>
