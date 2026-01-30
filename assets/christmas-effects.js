@@ -1,4 +1,4 @@
-/* Christmas effects: snowfall (canvas) + twinkling stars overlay
+/* Tết effects: falling lì xì (canvas) + twinkling stars overlay
    - Sử dụng requestAnimationFrame
    - Tắt nếu URL có ?xmas=0 hoặc localStorage.xmasEffects === "off"
    - Tôn trọng prefers-reduced-motion
@@ -106,11 +106,11 @@
         const h = this.r * 2.8; // Lì xì are taller than wide (envelope shape)
         ctx.drawImage(lixiImage, -w / 2, -h / 2, w, h);
       } else {
-        // Fallback: red/yellow block
-        ctx.fillStyle = 'rgba(220, 20, 60, ' + this.opacity + ')'; // Red
+        // Fallback: red/yellow block (globalAlpha already set)
+        ctx.fillStyle = 'rgb(220, 20, 60)'; // Red
         ctx.fillRect(-this.r, -this.r * 1.4, this.r * 2, this.r * 2.8);
         // Yellow/gold accent
-        ctx.fillStyle = 'rgba(255, 215, 0, ' + this.opacity + ')';
+        ctx.fillStyle = 'rgb(255, 215, 0)';
         ctx.fillRect(-this.r * 0.8, -this.r * 1.2, this.r * 1.6, this.r * 0.4);
       }
       
