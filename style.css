@@ -1,13 +1,34 @@
-/* General Body and Container Styles */
-body {
-    font-family: 'Poppins', 'Inter', sans-serif;
-    background-color: black; /* Giữ lại để có nền đen nếu ảnh không tải được */
+/* ===== BIẾN MÀU SẮC & FONT ===== */
+:root {
+    --primary: #8A2BE2;       /* Tím chủ đạo */
+    --primary-light: #bb99dd;
+    --primary-dark: #6a1b9a;
+    --accent: #ffd700;
+    --text-light: #e0e0e0;
+    --text-muted: #c0c0c0;
+    --bg-glass: rgba(255, 255, 255, 0.08);
+    --border-glass: rgba(153, 102, 204, 0.6);
+    --shadow-glass: 0 10px 30px rgba(0, 0, 0, 0.5);
+    --radius: 1rem;
+    --transition: 0.3s ease;
+}
+
+/* ===== RESET & NỀN ===== */
+* {
     margin: 0;
     padding: 0;
-    color: white;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', 'Inter', sans-serif;
+    background-color: #000;
+    color: #fff;
+    min-height: 100vh;
     position: relative;
 }
 
+/* Lớp phủ tối */
 body::before {
     content: "";
     position: fixed;
@@ -16,29 +37,42 @@ body::before {
     z-index: -1;
 }
 
+/* Ảnh nền cố định */
+.fixed-background {
+    position: fixed;
+    inset: 0;
+    background: url("img/background.gif") no-repeat center center / cover;
+    z-index: -2;
+}
+
+/* ===== CONTAINER ===== */
 .container {
     max-width: 700px;
-    margin: auto;
+    margin: 0 auto;
     padding: 2rem 1.5rem;
 }
 
-/* Glass Card Base Style */
+/* ===== GLASS CARD ===== */
 .glass-card {
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 1rem;
-    padding: 2.5rem;
+    background: var(--bg-glass);
+    border-radius: var(--radius);
+    padding: 2.5rem 2rem;
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
-    border: 1px solid rgba(153, 102, 204, 0.6);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border-glass);
+    box-shadow: var(--shadow-glass);
     margin-bottom: 2rem;
     position: relative;
 }
 
-/* Profile Section */
+/* ===== PHẦN HỒ SƠ ===== */
 .profile-section {
     text-align: center;
-    margin-bottom: 1.5rem;
+}
+
+.avatar-wrapper {
+    position: relative;
+    display: inline-block;
 }
 
 .avatar {
@@ -46,7 +80,7 @@ body::before {
     height: 130px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid #9966cc;
+    border: 3px solid var(--primary);
     box-shadow: 0 0 15px rgba(153, 102, 204, 0.7);
 }
 
@@ -55,7 +89,7 @@ body::before {
     bottom: 12px;
     right: 12px;
     background: #20c997;
-    border: 2px solid white;
+    border: 2px solid #fff;
     width: 18px;
     height: 18px;
     border-radius: 50%;
@@ -65,28 +99,27 @@ body::before {
     margin-top: 1.2rem;
     font-size: 2rem;
     font-weight: 600;
-    color: #e0e0e0;
+    color: var(--text-light);
 }
 
 .profile-bio {
     font-size: 1.05rem;
-    color: #c0c0c0;
-    margin-bottom: 0.5rem; /* Đã chỉnh khoảng cách */
+    color: var(--text-muted);
     line-height: 1.5;
+    margin-bottom: 0.5rem;
 }
-
 .profile-bio.live-info {
-    margin-top: 0.5rem; /* Khoảng cách từ dòng trên xuống */
-    margin-bottom: 2.5rem; /* Khoảng cách dưới dòng này để giữ bố cục */
+    margin-top: 0.5rem;
+    margin-bottom: 2.5rem;
 }
 
-/* Card Top Left Share Button */
-.card-top-left-share-button {
+/* ===== NÚT TRÊN CARD ===== */
+.card-top-left-share-button,
+.music-button {
     position: absolute;
     top: 1.2rem;
-    left: 1.2rem;
     background: transparent;
-    border: 2px solid #9966cc;
+    border: 2px solid var(--primary);
     border-radius: 50%;
     width: 48px;
     height: 48px;
@@ -94,72 +127,36 @@ body::before {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    z-index: 1;
     box-shadow: 0 5px 12px rgba(0, 0, 0, 0.4);
-    transition: all 0.3s ease;
-}
-
-.card-top-left-share-button:hover {
-    background: rgba(153, 102, 204, 0.15);
-    transform: scale(1.08);
-    border: 2px solid #bb99dd;
-    box-shadow: 0 0 15px rgba(153, 102, 204, 0.7);
-}
-
-.card-top-left-share-button i {
-    color: #e0e0e0;
+    transition: all var(--transition);
+    color: var(--text-light);
     font-size: 1.5rem;
+    z-index: 1;
 }
 
-/* Card Top Right Music Button */
+.card-top-left-share-button {
+    left: 1.2rem;
+}
 .card-top-right-music-button {
-    position: absolute;
-    top: 1.2rem;
     right: 1.2rem;
 }
 
-/* Music Control Button (General styles for music button) */
-.music-button {
-    background: transparent;
-    border: 1px solid #9966cc;
-    border-radius: 50%;
-    width: 48px;
-    height: 48px;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    transition: all 0.3s ease;
-    color: #e0e0e0;
-    font-size: 1.5rem;
-    outline: none;
-    z-index: 1;
-}
-
+.card-top-left-share-button:hover,
 .music-button:hover {
-    background-color: rgba(153, 102, 204, 0.25);
-    transform: translateY(-3px) scale(1.08);
-    border: 2px solid #bb99dd;
+    background: rgba(153, 102, 204, 0.15);
+    transform: scale(1.08);
+    border-color: var(--primary-light);
     box-shadow: 0 0 15px rgba(153, 102, 204, 0.7);
 }
 
 .music-button.playing {
-    background-color: rgba(153, 102, 204, 0.3);
-    border-color: #9966cc;
-    color: #9966cc;
+    background: rgba(153, 102, 204, 0.3);
+    border-color: var(--primary);
+    color: var(--primary);
     box-shadow: 0 0 15px rgba(153, 102, 204, 0.7);
 }
 
-.music-button.playing:hover {
-    background-color: rgba(153, 102, 204, 0.5);
-    color: #bb99dd;
-    border-color: #bb99dd;
-    box-shadow: 0 0 20px rgba(153, 102, 204, 0.9);
-}
-
-
-/* Social Icons */
+/* ===== SOCIAL ICONS ===== */
 .social-icons {
     margin-top: 1.5rem;
     display: flex;
@@ -169,110 +166,91 @@ body::before {
 }
 
 .social-icon {
-    color: #e0e0e0;
-    font-size: 1.5rem;
-    text-decoration: none;
-    transition: color 0.3s ease, transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid #9966cc;
-    border-radius: 50%;
-    width: 48px;
-    height: 48px;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--primary);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    color: var(--text-light);
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: all var(--transition);
 }
-
 .social-icon:hover {
-    color: #bb99dd;
-    transform: scale(1.15); /* Chỉ scale, không translateY để giữ bố cục */
-    background-color: rgba(153, 102, 204, 0.3);
-    border: 2px solid #bb99dd;
+    transform: scale(1.15);
+    background: rgba(153, 102, 204, 0.3);
+    border-color: var(--primary-light);
     box-shadow: 0 0 15px rgba(153, 102, 204, 0.7);
 }
 
+/* Màu riêng cho từng nền tảng */
+.social-icon .fa-youtube { color: #ff0000; }
+.social-icon .fa-discord { color: #5865f2; }
+.social-icon .fa-facebook-f,
+.social-icon .fa-facebook { color: #1877f2; }
+.social-icon .fa-tiktok { color: #ffffff; }
+.social-icon .fa-gamepad { color: var(--primary); }
 
-/* Specific Social Icon Colors */
-.social-icon .fab.fa-youtube { color: #ff0000; }
-.social-icon .fab.fa-discord { color: #5865f2; }
-.social-icon .fab.fa-facebook-f { color: #1877f2; }
-.social-icon .fab.fa-facebook { color: #1877f2; }
-.social-icon .fab.fa-tiktok { color: #ee1d52; }
-.social-icon .fas.fa-gamepad { color: #9966cc; }
-
-
-/* Dedicated Support Section */
+/* ===== PHẦN ỦNG HỘ ===== */
 .support-section {
     text-align: center;
 }
-
 .support-section h2 {
     margin-top: 0;
     margin-bottom: 1.8rem;
     font-size: 1.9rem;
-    color: #e0e0e0;
+    color: var(--text-light);
 }
-
 .support-section h2 i {
-    color: #9966cc;
+    color: var(--primary);
     margin-right: 0.6rem;
 }
 
-/* Wrapper cho QR code donate và nút tải xuống */
 .support-qr-wrapper {
     position: relative;
     width: 80%;
     max-width: 250px;
-    height: auto;
     margin: 0 auto 20px auto;
-    background: white;
+    background: #fff;
     padding: 12px;
     border-radius: 15px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-    overflow: hidden;
-    transform-style: preserve-3d;
-    perspective: 1000px;
-    transition: transform 0.3s ease;
-    border: 3px solid #8A2BE2;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    border: 3px solid var(--primary);
+    transition: transform var(--transition);
 }
-
-/* Hover effects for support-qr-wrapper */
 .support-qr-wrapper:hover {
     transform: translateY(5px);
 }
-
 .support-qr-wrapper:hover .support-qr-code {
     opacity: 0.3;
 }
-
 .support-qr-wrapper:hover .download-qr-overlay {
     opacity: 1;
     visibility: visible;
-    transform: translate(-50%, -50%) rotateY(0deg);
+    transform: translate(-50%, -50%) rotateY(0);
 }
 
-
-/* Apply general QR image styles for both share and support QR */
-.support-qr-code, .share-qr-image {
+.support-qr-code {
     width: 100%;
-    height: 100%;
-    object-fit: contain;
+    height: auto;
     display: block;
     border-radius: 10px;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: opacity var(--transition);
     backface-visibility: hidden;
 }
 
-/* Apply general download overlay styles for both share and support QR */
 .download-qr-overlay {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) rotateY(180deg);
     background: rgba(0, 0, 0, 0.75);
-    color: #e0e0e0;
-    border: 2px solid #9966cc;
+    color: #fff;
+    border: 2px solid var(--primary);
     border-radius: 10px;
     padding: 1rem 2rem;
     font-size: 1.3rem;
@@ -280,28 +258,84 @@ body::before {
     cursor: pointer;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    transition: opacity var(--transition), visibility var(--transition), transform var(--transition);
     display: flex;
     align-items: center;
     gap: 0.75rem;
     z-index: 10;
     backface-visibility: hidden;
 }
-
-/* Specific border color for donate download button if needed */
 .support-qr-wrapper .download-qr-overlay {
-    border: 2px solid #8A2BE2;
+    border-color: var(--primary);
 }
-
 
 .support-bank-info p {
     margin: 8px 0;
     font-size: 16px;
     line-height: 1.5;
 }
-
 .support-bank-info strong {
-    color: #FFD700;
+    color: #ffd700;
+}
+
+/* ===== NÚT DONATE (ĐÃ CẬP NHẬT MÀU CHUẨN ) ===== */
+.support-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin-top: 1.5rem;
+}
+
+.support-buttons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    text-decoration: none;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: #ffffff;
+    transition: all var(--transition);
+    border: 2px solid transparent;
+}
+
+/* --- ZyPage Button --- */
+.zypage-button {
+    background: linear-gradient(135deg, #8B5CF6, #6366F1);
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.25);
+}
+.zypage-button:hover {
+    background: linear-gradient(135deg, #7C3AED, #4F46E5);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4);
+}
+
+/* --- WeScan Button --- */
+.wescan-button {
+    background: #FFB800; 
+    color: #111111 !important; 
+    box-shadow: 0 4px 15px rgba(255, 184, 0, 0.25);
+}
+.wescan-button:hover {
+    background: #E5A600; 
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(255, 184, 0, 0.4);
+    color: #000000 !important;
+}
+
+/* --- PayPal Button --- */
+.paypal-button {
+    background: #003087;
+    box-shadow: 0 4px 15px rgba(0, 48, 135, 0.25);
+}
+.paypal-button:hover {
+    background: #001c54;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 48, 135, 0.4);
 }
 
 .support-footer-text {
@@ -313,47 +347,43 @@ body::before {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Showcase Section */
+/* ===== PHẦN ẢNH ===== */
 .showcase-section {
     text-align: center;
 }
-
 .showcase-section h2 {
-    margin-top: 3rem;
+    margin-top: 0;
     margin-bottom: 1.8rem;
     font-size: 1.9rem;
-    color: #e0e0e0;
+    color: var(--text-light);
 }
-
 .showcase-section h2 i {
-    color: #ffd700;
+    color: var(--accent);
     margin-right: 0.6rem;
 }
 
 .showcase-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 1.2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .showcase-image {
-    width: 100%;
+    width: calc(50% - 0.6rem);
+    max-width: 300px;
     border-radius: 0.75rem;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     transition: transform 0.2s ease;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
 }
-
 .showcase-image:hover {
     transform: scale(1.03);
 }
 
-.showcase-center {
-    text-align: center;
-    margin-top: 1.5rem;
-}
-
-/* Footer */
+/* ===== FOOTER ===== */
 .footer {
     text-align: center;
     font-size: 0.95rem;
@@ -361,90 +391,48 @@ body::before {
     padding-top: 1.5rem;
     padding-bottom: 1rem;
 }
-
 .footer-main i {
     color: #ec4899;
 }
 
-/* Popup Base Styles (for share) */
+/* ===== POPUP CHIA SẺ ===== */
 .popup-overlay {
     display: none;
     position: fixed;
+    inset: 0;
     z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.7);
+    background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     justify-content: center;
     align-items: center;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity var(--transition);
 }
-
 .popup-overlay.active {
     display: flex;
     opacity: 1;
 }
 
 .popup-content {
-    background-color: #333;
+    background: #333;
     margin: auto;
     padding: 25px;
     border-radius: 15px;
     width: 90%;
     max-width: 400px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     position: relative;
     color: #f0f0f0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     transform: scale(0.95);
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    transition: transform var(--transition), opacity var(--transition);
     opacity: 0;
 }
-
 .popup-overlay.active .popup-content {
     transform: scale(1);
     opacity: 1;
 }
 
-/* Close Button for Popups */
-.close-button {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.close-button:hover,
-.close-button:focus {
-    color: #fff;
-    text-decoration: none;
-}
-
-/* Popup Header */
-.popup-header {
-    text-align: center;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #444;
-}
-
-.popup-header h3 {
-    margin: 0;
-    font-size: 24px;
-    color: #8A2BE2;
-}
-
-/* Share Popup Specific Styles */
 .share-popup-content {
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(153, 102, 204, 0.5);
@@ -452,10 +440,32 @@ body::before {
     -webkit-backdrop-filter: blur(20px) saturate(180%);
 }
 
-.share-popup-content h3 {
-    margin-bottom: 1.8rem;
-    font-size: 1.6rem;
-    color: #e0e0e0;
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #aaa;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color var(--transition);
+}
+.close-button:hover {
+    color: #fff;
+}
+
+.popup-header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #444;
+}
+.popup-header h3 {
+    margin: 0;
+    font-size: 24px;
+    color: var(--primary);
 }
 
 .share-qr-wrapper {
@@ -463,152 +473,73 @@ body::before {
     width: 200px;
     height: 200px;
     margin: 0 auto 2rem auto;
-    background: white;
+    background: #fff;
     padding: 12px;
     border-radius: 15px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     transform-style: preserve-3d;
     perspective: 1000px;
-    transition: transform 0.3s ease;
+    transition: transform var(--transition);
 }
-
 .share-qr-wrapper:hover {
     transform: rotateY(12deg);
 }
-
 .share-qr-wrapper:hover .share-qr-image {
     opacity: 0.3;
     transform: rotateY(12deg);
 }
-
 .share-qr-wrapper:hover .download-qr-overlay {
     opacity: 1;
     visibility: visible;
-    transform: translate(-50%, -50%) rotateY(0deg);
+    transform: translate(-50%, -50%) rotateY(0);
+}
+.share-qr-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    border-radius: 10px;
+    transition: opacity var(--transition), transform var(--transition);
+    backface-visibility: hidden;
 }
 
 .share-link-box {
     display: flex;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.4);
     border-radius: 0.85rem;
     padding: 0.6rem;
     margin-top: 2rem;
-    border: 2px solid #9966cc;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.25);
+    border: 2px solid var(--primary);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
 }
-
 .share-link-box input {
-    flex-grow: 1;
+    flex: 1;
     border: none;
     background: transparent;
     outline: none;
     font-size: 1.05rem;
-    color: #e0e0e0;
+    color: var(--text-light);
     padding: 0.6rem 1rem;
 }
-
 .share-link-box button {
-    background-color: #9966cc;
-    color: #e0e0e0;
+    background: var(--primary);
+    color: #fff;
     border: none;
     border-radius: 0.6rem;
     padding: 0.8rem 1.4rem;
     cursor: pointer;
     font-size: 1.05rem;
     font-weight: 600;
-    transition: background-color 0.2s ease, transform 0.2s ease;
+    transition: background var(--transition), transform var(--transition);
 }
-
 .share-link-box button:hover {
-    background-color: #bb99dd;
+    background: var(--primary-light);
     transform: translateY(-3px);
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .container {
-        padding: 1.5rem 1rem;
-    }
-    .glass-card {
-        padding: 2rem;
-    }
-    .card-top-left-share-button {
-        top: 1rem;
-        left: 1rem;
-        width: 42px;
-        height: 42px;
-    }
-    .card-top-left-share-button i {
-        font-size: 1.3rem;
-    }
-    .card-top-right-music-button {
-        top: 1rem;
-        right: 1rem;
-        width: 42px;
-        height: 42px;
-        font-size: 1.3rem;
-    }
-    .popup-content {
-        padding: 1.8rem;
-    }
-    .popup-header h3 {
-        font-size: 1.4rem;
-    }
-    .support-qr-wrapper {
-        width: 70%;
-        max-width: 200px;
-    }
-    .support-bank-info p {
-        font-size: 14px;
-    }
-    .support-footer-text {
-        font-size: 16px;
-    }
-    .share-qr-wrapper {
-        width: 160px;
-        height: 160px;
-        padding: 10px;
-    }
-    .download-qr-overlay {
-        padding: 0.7rem 1.2rem;
-        font-size: 1.1rem;
-    }
-    .share-link-box input {
-        font-size: 0.95rem;
-    }
-    .share-link-box button {
-        padding: 0.6rem 1rem;
-        font-size: 0.95rem;
-    }
-    .avatar {
-        width: 100px;
-        height: 100px;
-    }
-    .online-indicator {
-        width: 14px;
-        height: 14px;
-        bottom: 8px;
-        right: 8px;
-    }
-    .profile-name {
-        font-size: 1.6rem;
-    }
-    .profile-bio {
-        font-size: 0.95rem;
-    }
-    .social-icon {
-        font-size: 1.2rem;
-        width: 40px;
-        height: 40px;
-    }
-    .social-icons {
-        gap: 0.8rem;
-    }
-}
-
-/* Dòng bản quyền ẩn, chỉ hiện khi F12 */
+/* ===== BẢN QUYỀN ẨN (F12) ===== */
 #copyright-hidden-text {
     position: absolute;
     left: -9999px;
@@ -620,249 +551,97 @@ body::before {
     pointer-events: none;
     user-select: none;
     white-space: nowrap;
-
-    /* Styles khi được phát hiện trong DevTools */
-    color: #555;
-    font-size: 10px;
-    text-align: center;
-    width: auto;
-    height: auto;
 }
 
-#copyright-hidden-text p {
-    margin: 0;
-    padding: 0;
-}
-    /* Thêm CSS này cho ảnh nền cố định trên mọi thiết bị */
-.fixed-background {
-    position: fixed; /* Làm cho nó cố định trên màn hình */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url("img/background.gif") no-repeat center center;
-    background-size: cover;
-    z-index: -2; /* Đảm bảo nó nằm dưới lớp phủ 'body::before' (có z-index: -1) và nội dung chính */
-}
-
-/* --- */
-/* Showcase Game Section Specific Styles */
-.game-call-to-action {
-    text-align: center;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-    font-size: 1.15em; /* Tăng kích thước font nhẹ */
-    color: #f0f0f0;
-    font-weight: 500;
-    line-height: 1.4;
-}
-
-.showcase-grid {
-    display: flex; /* Dùng flexbox để linh hoạt hơn */
-    justify-content: center; /* Căn giữa các game item */
-    flex-wrap: wrap; /* Cho phép các item xuống dòng */
-    gap: 1.2rem; /* Khoảng cách giữa các game item */
-    margin-bottom: 1.5rem; /* Khoảng cách giữa các hàng game */
-}
-
-.game-item {
-    text-align: center;
-    background: rgba(255, 255, 255, 0.08); /* Nền glassmorphism cho từng item game */
-    border: 1px solid rgba(153, 102, 204, 0.4); /* Viền mờ đồng bộ với glass-card */
-    border-radius: 0.85rem; /* Bo góc nhẹ nhàng */
-    padding: 10px 12px; /* Đệm bên trong */
-    width: 130px; /* Chiều rộng cố định cho mỗi game item */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
-    cursor: pointer;
-}
-
-.game-item:hover {
-    transform: translateY(-8px) scale(1.03); /* Hiệu ứng nổi bật hơn khi hover */
-    background-color: rgba(153, 102, 204, 0.15); /* Nền highlight nhẹ */
-    border-color: rgba(153, 102, 204, 0.7); /* Viền rõ hơn */
-}
-
-.game-item a {
-    text-decoration: none; /* Bỏ gạch chân cho link */
-    color: inherit; /* Kế thừa màu chữ */
-    display: flex; /* Dùng flexbox để căn chỉnh nội dung bên trong */
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%; /* Đảm bảo link chiếm toàn bộ item */
-    height: 100%;
-}
-
-.game-item .showcase-image {
-    width: 80px; /* Kích thước icon game */
-    height: 80px; /* Kích thước icon game */
-    object-fit: cover;
-    border-radius: 18px; /* Bo tròn vừa phải cho icon game */
-    margin-bottom: 0.6rem;
-    border: 2px solid rgba(255, 255, 255, 0.25); /* Viền mờ cho icon */
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    transition: border-color 0.2s ease;
-}
-
-.game-item:hover .showcase-image {
-    border-color: #9966cc; /* Viền nổi bật hơn khi hover */
-}
-
-.game-item .game-name {
-    font-size: 0.95em; /* Kích thước font cho tên game */
-    font-weight: 600;
-    color: #e0e0e0; /* Màu chữ gần trắng */
-    margin: 0;
-    text-align: center;
-    /* Đảm bảo tên game không quá dài và có thể hiển thị trong 1 dòng */
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 100%; /* Đảm bảo văn bản không tràn ra ngoài game-item */
-}
-
-.showcase-center .game-item {
-    width: 150px; /* Game chính có thể lớn hơn một chút */
-    padding: 15px;
-}
-
-.showcase-center .game-item .showcase-image {
-    width: 100px; /* Icon game chính lớn hơn */
-    height: 100px;
-    border-radius: 20px;
-}
-
-.showcase-center .game-item .game-name {
-    font-size: 1.05em; /* Tên game chính to hơn */
-}
-
-/* Responsive adjustments for game showcase */
+/* ===== RESPONSIVE (TỐI ƯU CHO IPHONE & MOBILE) ===== */
 @media (max-width: 768px) {
-    .game-call-to-action {
-        font-size: 1.05em;
-        margin-top: 0.8rem;
-        margin-bottom: 1.5rem;
+    .container {
+        /* Bổ sung env() để tránh bị che bởi thanh điều hướng ngang trên iPhone tai thỏ */
+        padding: 1.5rem 1rem calc(1.5rem + env(safe-area-inset-bottom)); 
     }
-    .showcase-grid {
-        gap: 1rem;
-        margin-bottom: 1rem;
+    .glass-card {
+        padding: 1.5rem 1rem; 
     }
-    .game-item {
-        width: 110px; /* Giảm kích thước trên mobile */
-        padding: 8px 10px;
+    
+    .card-top-left-share-button,
+    .music-button {
+        width: 40px; 
+        height: 40px;
+        font-size: 1.2rem;
+        top: 1rem;
     }
-    .game-item .showcase-image {
-        width: 65px;
-        height: 65px;
-        border-radius: 15px;
-        margin-bottom: 0.5rem;
+    .card-top-left-share-button { left: 1rem; }
+    .card-top-right-music-button { right: 1rem; }
+
+    .avatar {
+        width: 90px;
+        height: 90px;
     }
-    .game-item .game-name {
-        font-size: 0.85em;
+    .online-indicator {
+        width: 14px;
+        height: 14px;
+        bottom: 6px;
+        right: 6px;
     }
-    .showcase-center .game-item {
-        width: 130px; /* Game chính trên mobile */
+    .profile-name { font-size: 1.5rem; }
+    .profile-bio { font-size: 0.9rem; }
+
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    .social-icons { gap: 0.8rem; }
+
+    .support-qr-wrapper {
+        width: 70%;
+        max-width: 180px;
+    }
+    .support-bank-info p {
+        font-size: 14px;
+        word-break: break-word; 
+    }
+    
+    /* Thu nhỏ nút Donate trên mobile */
+    .paypal-button,
+    .wescan-button,
+    .zypage-button {
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+    }
+
+    .support-footer-text { font-size: 15px; }
+
+    .showcase-image {
+        width: calc(50% - 0.5rem); 
+    }
+
+    .popup-content {
+        padding: 1.5rem 1rem;
+        width: 92%;
+    }
+    .popup-header h3 { font-size: 1.3rem; }
+    
+    .share-qr-wrapper {
+        width: 140px;
+        height: 140px;
         padding: 10px;
     }
-    .showcase-center .game-item .showcase-image {
-        width: 80px;
-        height: 80px;
+    .download-qr-overlay {
+        padding: 0.6rem 1rem;
+        font-size: 1rem;
     }
-    .showcase-section h2 {
-        font-size: 1.7rem; /* Giảm kích thước tiêu đề phần showcase trên mobile */
-        margin-top: 2rem;
-        margin-bottom: 1.5rem;
+    
+    .share-link-box {
+        padding: 0.4rem; 
     }
-}
-.paypal-button {
-    display: inline-block;
-    background-color: #0070ba;
-    color: white;
-    padding: 1rem 2.5rem;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.15rem;
-    margin-top: 2rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-    border: 2px solid transparent;
-}
-
-.paypal-button:hover {
-    background-color: #005691;
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-}
-
-.paypal-button i {
-    margin-right: 0.75rem;
-    font-size: 1.3rem;
-}
-
-.wescan-button {
-    display: inline-block;
-    background: linear-gradient(135deg, #dc143c 0%, #ffd700 100%);
-    color: white;
-    padding: 1rem 2.5rem;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 1.15rem;
-    margin-top: 1rem;
-    box-shadow: 0 4px 15px rgba(220, 20, 60, 0.3);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    border: 2px solid rgba(255, 215, 0, 0.5);
-}
-
-.wescan-button:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(220, 20, 60, 0.5);
-    border-color: #ffd700;
-}
-
-.wescan-button i {
-    margin-right: 0.75rem;
-    font-size: 1.3rem;
-}
-
-/* Tùy chỉnh nút ZyPage */
-.zypage-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px;
-    margin-top: 12px;
-    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%); /* Màu gradient hồng nhẹ nhàng */
-    color: #333;
-    text-decoration: none;
-    border-radius: 12px;
-    font-weight: 600;
-    font-family: 'Inter', sans-serif;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.zypage-button i {
-    margin-right: 10px;
-    color: #ff4757; /* Màu trái tim đỏ hồng */
-    font-size: 1.1rem;
-}
-
-.zypage-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(255, 154, 158, 0.4);
-    background: linear-gradient(135deg, #fecfef 0%, #ff9a9e 100%);
-}
-
-/* Đảm bảo các nút đồng nhất kích thước */
-.paypal-button, .wescan-button, .zypage-button {
-    width: 100%;
-    box-sizing: border-box;
+    .share-link-box input {
+        font-size: 0.9rem;
+        min-width: 0; 
+        padding: 0.5rem;
+    }
+    .share-link-box button {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.9rem;
+    }
 }
