@@ -3,133 +3,161 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Đảk Đảk Bủn Bủn - Personal Website</title>
-    <meta name="description" content="Trang cá nhân của Đảk Đảk Bủn Bủn  - Xin Chào Anh Chị Em yêu dấu của Bủn's ❤️">
+    <title>Đảk Đảk Bủn Bủn – Personal Website</title>
+    <meta name="description" content="Trang cá nhân của Đảk Đảk Bủn Bủn - Xin Chào Anh Chị Em yêu dấu của Bủn's ❤️" />
 
-    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
-    <link rel="manifest" href="img/site.webmanifest">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png" />
+    <link rel="manifest" href="img/site.webmanifest" />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 
-    <link rel="stylesheet" href="style.css">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<div class="fixed-background"></div>
+    <!-- Background cố định -->
+    <div class="fixed-background" aria-hidden="true"></div>
 
-<div class="container">
-    <div class="glass-card profile-section">
-        <div class="card-top-left-share-button" id="card-share-button">
-            <i class="fas fa-share-alt"></i>
-        </div>
-
-        <button id="toggle-music-button" class="music-button card-top-right-music-button" title="Bật/Tắt nhạc nền">
-            <i class="fas fa-volume-up"></i>
-        </button>
-
-        <div style="position: relative; display: inline-block;">
-            <img src="img/avatar.jpeg" alt="Profile Avatar" class="avatar">
-            <div class="online-indicator"></div>
-        </div>
-        <h1 class="profile-name" id="typing"></h1>
-        <p class="profile-bio">Xin Chào Anh Chị Em yêu dấu của Bủn's ❤️</p>
-        <p class="profile-bio live-info">Live 18h hàng ngày trên tiktok.</p>
-
-        <div class="social-icons">
-            <a href="https://www.facebook.com/groups/1285627979933841/?ref=share&mibextid=NSMWBT" class="social-icon" target="_blank" title="Fanpage Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.instagram.com/sabyn.chin/" class="social-icon" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.youtube.com/@Chinn27" class="social-icon" target="_blank" title="Youtube"><i class="fab fa-youtube"></i></a>
-            <a href="mailto:sabynchinn@gmail.com" class="social-icon" title="Email"><i class="fas fa-envelope"></i></a>
-            <a href="https://playerduo.net/6421206e33cfab3e951f48d2" class="social-icon" target="_blank" title="PlayDuo" style="background-image: url('img/pld.png'); background-size: cover; background-position: center;">
-            </a>
-            <a href="https://discord.com/invite/bJ9pyXB5ab" class="social-icon" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
-            <a href="https://www.tiktok.com/@chinn2705" class="social-icon" target="_blank" title="TikTok Bủn"><i class="fab fa-tiktok"></i></a>
-        </div>
-
-    </div>
-
-    <div class="glass-card support-section">
-        <h2><i class="fas fa-qrcode" style="color: #8A2BE2; margin-right: 0.5rem;"></i>Ủng hộ Em Bủn</h2>
-        <div class="support-qr-wrapper">
-            <img src="img/QR.png" alt="QR Code Ngân Hàng" class="support-qr-code">
-            <button class="download-qr-overlay" id="download-donate-qr">
-                <i class="fas fa-download"></i> Tải xuống
+    <div class="container">
+        <!-- ===== PHẦN HỒ SƠ ===== -->
+        <section class="glass-card profile-section" aria-label="Hồ sơ cá nhân">
+            <!-- Nút chia sẻ -->
+            <button class="card-top-left-share-button" id="card-share-button" aria-label="Chia sẻ trang">
+                <i class="fas fa-share-alt"></i>
             </button>
-        </div>
-        <div class="support-bank-info">
-            <p><strong>Ngân hàng:</strong> MB bank</p>
-            <p><strong>Số tài khoản:</strong> 00961270500</p>
-            <p><strong>Chủ tài khoản:</strong> LE THI TUYET TRINH</p>
-        </div>
-        <a href="https://wescan.vn/sabynchinn" target="_blank" class="wescan-button">
-            <i class="fas fa-qrcode"></i> Ủng hộ qua WeScan
-        </a>
-	    <a href="https://www.paypal.com/paypalme/sabyn81" target="_blank" class="paypal-button">
-            <i class="fab fa-paypal"></i> Ủng hộ qua PayPal
-        </a>
-		<a href="https://zypage.com/sabyn" target="_blank" class="zypage-button">
-        <i class="fas fa-heart"></i> Ủng hộ qua ZyPage
-		</a>
-        <p class="support-footer-text">Em Bủn cảm ơn mọi người :3</p>
-    </div>
 
-    <div class="glass-card showcase-section">
-        <h2><i class="fas fa-images" style="color: #ffd700; margin-right: 0.5rem;"></i>Ảnh người đẹp</h2>
-        <div class="showcase-grid">
-            <img src="img/pic-showcase2.jpg" alt="Ảnh 2" class="showcase-image">
-        </div>
-        <div class="showcase-grid">
-            <img src="img/pic-showcase3.jpg" alt="Ảnh 3" class="showcase-image">
-            <img src="img/pic-showcase4.jpg" alt="Ảnh 4" class="showcase-image">
-        </div>
-        <div class="showcase-center">
-        </div>
-    </div>
-
-    <div class="glass-card footer">
-        <p class="footer-main"><i class="fas fa-heart" style="color: #ec4899; margin-right: 0.25rem;"></i>Made By Bủn</p>
-        <p><a href="hiddenthing.html" style="color: inherit; text-decoration: none;">© Bủn2025.</a></p>
-    </div>
-</div>
-
-<audio id="bg-music" src="music/background.mp3" loop></audio>
-
-<div id="sharePopup" class="popup-overlay">
-    <div class="popup-content share-popup-content" onclick="event.stopPropagation()">
-        <span class="close-button" id="close-share-popup">×</span>
-        <div class="popup-header">
-            <h3>Chia sẻ Bio Link này</h3>
-        </div>
-
-        <div class="share-qr-wrapper">
-            <img src="img/qr-link.png" alt="QR Code của Bio Link" class="share-qr-image" id="bio-link-qr-image">
-            <button class="download-qr-overlay" id="download-qr-overlay">
-                <i class="fas fa-download"></i> Tải xuống
+            <!-- Nút điều khiển nhạc -->
+            <button id="toggle-music-button" class="music-button card-top-right-music-button" aria-label="Bật/tắt nhạc nền">
+                <i class="fas fa-volume-up"></i>
             </button>
-        </div>
 
-        <div class="share-link-box">
-            <input type="text" id="bio-link-url" value="https://sabyn.site/" readonly>
-            <button id="copy-bio-link">Copy</button>
+            <!-- Avatar & trạng thái online -->
+            <div class="avatar-wrapper">
+                <img src="img/avatar.jpeg" alt="Avatar của Đảk Đảk Bủn Bủn" class="avatar" />
+                <span class="online-indicator" aria-label="Đang hoạt động"></span>
+            </div>
+
+            <h1 class="profile-name" id="typing">Đảk Đảk Bủn Bủn</h1>
+            <p class="profile-bio">Xin Chào Anh Chị Em yêu dấu của Bủn's ❤️</p>
+            <p class="profile-bio live-info">Live 18h hàng ngày trên TikTok.</p>
+
+            <!-- Mạng xã hội -->
+            <div class="social-icons">
+                <a href="https://www.facebook.com/groups/1285627979933841/?ref=share&mibextid=NSMWBT" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/sabyn.chin/" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.youtube.com/@Chinn27" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="mailto:sabynchinn@gmail.com" class="social-icon" aria-label="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="https://playerduo.net/6421206e33cfab3e951f48d2" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="PlayDuo" style="background-image: url('img/pld.webp'); background-size: cover; background-position: center;">
+                </a>
+                <a href="https://discord.com/invite/bJ9pyXB5ab" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="Discord">
+                    <i class="fab fa-discord"></i>
+                </a>
+                <a href="https://www.tiktok.com/@chinn2705" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- ===== PHẦN ỦNG HỘ ===== -->
+        <section class="glass-card support-section" aria-label="Ủng hộ">
+            <h2><i class="fas fa-qrcode" aria-hidden="true"></i> Ủng hộ Em Bủn</h2>
+
+            <div class="support-qr-wrapper">
+                <img src="img/QR.png" alt="Mã QR ngân hàng MB Bank" class="support-qr-code" />
+                <button class="download-qr-overlay" id="download-donate-qr">
+                    <i class="fas fa-download" aria-hidden="true"></i> Tải xuống
+                </button>
+            </div>
+
+            <div class="support-bank-info">
+                <p><strong>Ngân hàng:</strong> MB Bank</p>
+                <p><strong>Số tài khoản:</strong> 00961270500</p>
+                <p><strong>Chủ tài khoản:</strong> LE THI TUYET TRINH</p>
+            </div>
+
+            <div class="support-buttons">
+				<a href="https://zypage.com/sabyn" target="_blank" rel="noopener noreferrer" class="zypage-button">
+					<i class="fas fa-heart" aria-hidden="true"></i> Ủng hộ qua ZyPage
+				</a>
+				<a href="https://wescan.vn/sabynchinn" target="_blank" rel="noopener noreferrer" class="wescan-button">
+					<i class="fas fa-qrcode" aria-hidden="true"></i> Ủng hộ qua WeScan
+				</a>
+				<a href="https://www.paypal.com/paypalme/sabyn81" target="_blank" rel="noopener noreferrer" class="paypal-button">
+					<i class="fab fa-paypal" aria-hidden="true"></i> Ủng hộ qua PayPal
+				</a>
+			</div>
+
+            <p class="support-footer-text">Em Bủn cảm ơn mọi người :3</p>
+        </section>
+
+        <!-- ===== PHẦN ẢNH ===== -->
+        <section class="glass-card showcase-section" aria-label="Album ảnh">
+            <h2><i class="fas fa-images" aria-hidden="true"></i> Ảnh người đẹp</h2>
+            <div class="showcase-grid">
+                <img src="img/pic-showcase2.jpg" alt="Ảnh 1" class="showcase-image" />
+                <img src="img/pic-showcase3.jpg" alt="Ảnh 2" class="showcase-image" />
+                <img src="img/pic-showcase4.jpg" alt="Ảnh 3" class="showcase-image" />
+            </div>
+            <!-- Nếu muốn thêm ảnh khác, có thể thêm hàng mới -->
+        </section>
+
+        <!-- ===== FOOTER ===== -->
+        <footer class="glass-card footer">
+            <p class="footer-main"><i class="fas fa-heart" aria-hidden="true"></i> Made By Bủn</p>
+            <p><a href="hiddenthing.html" style="color: inherit; text-decoration: none;">© Bủn 2025</a></p>
+        </footer>
+    </div>
+
+    <!-- ===== AUDIO NHẠC NỀN ===== -->
+    <audio id="bg-music" src="music/background.mp3" loop></audio>
+
+    <!-- ===== POPUP CHIA SẺ ===== -->
+    <div id="sharePopup" class="popup-overlay" role="dialog" aria-modal="true" aria-labelledby="share-popup-title">
+        <div class="popup-content share-popup-content">
+            <button class="close-button" id="close-share-popup" aria-label="Đóng">×</button>
+            <div class="popup-header">
+                <h3 id="share-popup-title">Chia sẻ Bio Link này</h3>
+            </div>
+
+            <div class="share-qr-wrapper">
+                <img src="img/qr-link.png" alt="Mã QR của Bio Link" class="share-qr-image" id="bio-link-qr-image" />
+                <button class="download-qr-overlay" id="download-qr-overlay">
+                    <i class="fas fa-download" aria-hidden="true"></i> Tải xuống
+                </button>
+            </div>
+
+            <div class="share-link-box">
+                <input type="text" id="bio-link-url" value="https://sabyn.site/" readonly aria-label="Đường dẫn bio" />
+                <button id="copy-bio-link">Copy</button>
+            </div>
         </div>
     </div>
-</div>
 
-<div id="copyright-hidden-text">
-    <p>Made by thangloi 2024 mai yeu</p>
-</div>
+    <!-- ===== BẢN QUYỀN ẨN ===== -->
+    <div id="copyright-hidden-text" aria-hidden="true">
+        <p>Made by thangloi 2024 mai yeu</p>
+    </div>
 
-<script src="script.js"></script>
+    <!-- ===== SCRIPTS ===== -->
+    <script src="script.js"></script>
 
-<!-- Christmas effects: CSS + JS -->
-<link rel="stylesheet" href="/assets/christmas-effects.css">
-<script src="/assets/christmas-effects.js" defer></script>
-
-<!-- Lì Xì (Red Envelope) falling effect: CSS + JS -->
-<link rel="stylesheet" href="/assets/css/lixi.css">
-<script src="/assets/js/lixi.js" data-autostart data-count="18" data-interval="350"></script>
-
+    <!-- Hiệu ứng Giáng sinh & Lì xì (nếu có) -->
+    <link rel="stylesheet" href="/assets/christmas-effects.css" />
+    <script src="/assets/christmas-effects.js" defer></script>
+    <link rel="stylesheet" href="/assets/css/lixi.css" />
+    <script src="/assets/js/lixi.js" data-autostart data-count="18" data-interval="350" defer></script>
 </body>
 </html>
